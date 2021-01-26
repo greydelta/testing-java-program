@@ -1,0 +1,6 @@
+aw;aw;0165178546;true;76-H;Jalan Street 09;MT;9th District;75250;4;
+aw1;aw1;0120055776;true;No 15;Jalan Taman;UP;Daerah J;76025;4;
+greg;greg;0196565859;true;9-23 Sun Tower;One Avenue;KS;10th District;77880;4;
+shawn;shawn;0148859696;true;115;Lebuhraya Spike;DT;Jaya;74580;4;
+fed;fed;0178512123;true;66-B;Lorong Alley;JN;Sand District;79730;4;
+bro;bro;0182312369;true;Unit 2 Level 45;Raze Condominium;AK;District Up;74475;4;
