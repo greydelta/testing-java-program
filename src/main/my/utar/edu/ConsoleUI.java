@@ -1,4 +1,23 @@
 package my.utar.edu;
+// @@@@@@@ Expand comment below for assumptions  @@@@@@@
+
+/* Class: ConsoleUI
+ * Function: 
+ * 
+ * Summary of Content:
+ * Variables
+ * Constructor
+ * Accessor Methods
+ * 
+ * SECTION A (Load all data from text file)
+ * Method A  : Execute all load methods 							> public void loadAllData()
+ * Method A1 : Load all Members 									> public void loadMembersData()
+ * Method A2 : Load all Items 										> public void loadItemsData()
+ * Method A3 : Load all Charges 									> public void loadDeliveryChargesData()
+ * 
+ */
+
+
 import java.util.*;
 import java.io.*;
 
@@ -28,12 +47,20 @@ public class ConsoleUI {
 		return control;
 	}
 	
+	/* =======================================
+	 * ============== SECTION A ==============
+	 * ======================================= */
+	
+	/* Method A : Execute all load methods
+	*****************************************/
 	public void loadAllData() {
 		loadMembersData();
 		loadItemsData();
 		loadDeliveryChargesData();
 	}
 	
+	/* Method A1 : Load all Members
+	*****************************************/
 	public void loadMembersData() {
 		File member = new File("member.txt");
 		try {
@@ -62,6 +89,8 @@ public class ConsoleUI {
 		System.out.println("Loaded "+count+" rows of data from member.txt");
 	}
 	
+	/* Method A2 : Load all Items
+	*****************************************/
 	public void loadItemsData() {
 		File item = new File("items.txt");
 		try {
@@ -86,6 +115,8 @@ public class ConsoleUI {
 		System.out.println("Loaded "+count+" rows of data from items.txt");
 	}
 	
+	/* Method A3 : Load all Charges
+	*****************************************/
 	public void loadDeliveryChargesData() {
 		File deliveryCharges = new File("delivery_charges.txt");
 		try {
