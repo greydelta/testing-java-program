@@ -140,5 +140,79 @@ public class ConsoleUI {
 	}
 	
 	public void launch() {
+		Member loginSession = mainMenu();
+		int choice = -1;
+		while(choice != 3) {
+			choice = subMenu(loginSession);
+			if(choice == 3)
+				System.out.println("Thank you for using our system!");
+		}
 	}
+	
+	public Member mainMenu() {
+		setScanner(new Scanner(System.in));
+		Member login = null;
+		int mainMenuChoice, status =-1, checkAddress, loop =-1;
+		
+		do {
+			mainMenuChoice = -1;
+			login = null;
+			checkAddress = 2;
+			System.out.println("\n<<Main Menu>>");
+			System.out.println("==================================");
+			System.out.println("       Welcome to MK Bakery");
+			System.out.println("    Homemade Cakes & Pastries");
+			System.out.println("==================================");
+			System.out.println("Would you like to, select (1 to 4)");
+			System.out.println("1. Login as Member");
+			System.out.println("2. Login as Guest");
+			System.out.println("3. Register as Member");
+			System.out.println("4. Exit this system");
+			
+			do {
+				System.out.print(">>Choice: ");
+				try {
+					mainMenuChoice = intInputValidation(1, 4); 
+					System.out.print("\n");
+					status = 1;} // Valid > Proceed to Choice
+				catch (IllegalArgumentException e) {
+					System.err.println(e.getMessage());
+					bufferFor5Miliseconds();
+					status = 0;} // Invalid > Request for input again
+			}while(status != 1);
+			
+		return login;
+	}
+	
+	public int subMenu(Member loginValid) {
+		int choice = -1;
+		
+		System.out.println("\n<<Sub-Menu>>");
+		if(loginValid.getFlag() == true)
+			System.out.println(" >>Logged In as (Member): "+loginValid.getName());
+		else if(loginValid.getFlag() == false)
+			System.out.println(" >>Logged In as (Guest): "+loginValid.getName());
+		System.out.println(" 1. Place Order");
+		System.out.println(" 2. Track Orders");
+		System.out.println(" 3. Exit this system");
+		System.out.print(">>Choice: ");
+		try {
+			choice = intInputValidation(1, 3);}
+		catch (IllegalArgumentException e) {
+			System.err.println(e.getMessage());
+			bufferFor5Miliseconds();}
+
+		return choice;
+	}
+	
+	public Member login() {
+		int signInChoice = -1, doWhile1 = -1, doWhile2 = -1, doWhile3 = -1,
+			innerDoWhile1 = -1, innerDoWhile2 = -1;
+		Member loginValid = null;
+		String name = null, pass = null;
+		
+		
+		return loginValid;
+	}
+	
 }
