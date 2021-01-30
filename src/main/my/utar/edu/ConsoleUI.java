@@ -19,6 +19,7 @@ package my.utar.edu;
 
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.io.*;
 
 public class ConsoleUI {
@@ -215,6 +216,38 @@ public class ConsoleUI {
 		return loginValid;
 	}
 	
+	
+    public Member promptInputDetails(){
+    	String name = null, phone = null;
+    	int doWhile1 = -1, doWhile2 = -1;
+    	System.out.println("<<Contact Details>>");
+		do {
+			System.out.print("Enter Name: ");
+			try {
+				name = stringInputValidation();
+				doWhile1 = 1;}   
+			catch (IllegalArgumentException e) {
+				System.err.println(e.getMessage());
+				bufferFor5Miliseconds();
+				doWhile1 = 0;} 
+		}while(doWhile1 != 1);
+    	
+		do {
+			System.out.print("Enter Phone Number: ");
+			try {
+				phone = stringInputValidation();
+				doWhile2 = 1;}   
+			catch (IllegalArgumentException e) {
+				System.err.println(e.getMessage());
+				bufferFor5Miliseconds();
+				doWhile2 =0;}
+		}while(doWhile2 != 1);
+
+		boolean flag = false;
+		Member member = new Member(name, phone, flag);
+    	return member;
+    }
+    
     
     public int intInputValidation(int lower, int upper) throws IllegalArgumentException {
         setScanner(new Scanner(System.in));
