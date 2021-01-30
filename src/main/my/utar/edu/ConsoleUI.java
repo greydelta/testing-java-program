@@ -383,6 +383,14 @@ public class ConsoleUI {
 		return add;
     }
     
+    public int validateAddress(int state) {
+    	if(state == 4) 
+    		return 1; // Melaka
+    	else if(state >= 1 && state <= 13 && state != 4) 
+    		return 0; // All other states 
+    	else
+    		return -1; // Input validation
+    }
     
     public int intInputValidation(int lower, int upper) throws IllegalArgumentException {
         setScanner(new Scanner(System.in));
