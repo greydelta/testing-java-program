@@ -392,6 +392,25 @@ public class ConsoleUI {
     		return -1; // Input validation
     }
     
+    public String convertAddress(int rawAddress) {
+    	switch(rawAddress) {
+    		case 1: return "Johor"; 
+    		case 2: return "Kedah";
+    		case 3: return "Kelantan";
+    		case 4: return "Melaka";
+    		case 5: return "N.Sembilan";
+    		case 6: return "Pahang";
+    		case 7: return "Penang";
+    		case 8: return "Perak";
+    		case 9: return "Perlis";
+    		case 10: return "Sabah";
+    		case 11: return "Sarawak";
+    		case 12: return "Selangor";
+    		case 13: return "Terengganu";
+    		default: return null;
+    	}
+    }
+    
     public int intInputValidation(int lower, int upper) throws IllegalArgumentException {
         setScanner(new Scanner(System.in));
         int userInput;
