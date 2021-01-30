@@ -248,6 +248,141 @@ public class ConsoleUI {
     	return member;
     }
     
+    public Address promptInputAddress() {
+    	setScanner(new Scanner(System.in));
+    	
+    	int inputState = 0, inputArea = 0, inputAddressChoice = -1, 
+    	doWhile1 = -1, doWhile2 = -1, doWhile3 = -1, doWhile4 = -1,
+    	doWhile5 = -1, doWhile6 = -1, doWhile7 = -1, doWhile8 = -1;
+    	String unit = null, street = null, district = null, postal = null;
+    	
+    	do { //doWhile1
+    		System.out.println("\n<<Enter Address>>");
+	    	do { //doWhile2
+	    		System.out.println("Which state do you live in?");
+	    		System.out.print(" 1. Johor\t 6. Pahang\t 10. Sabah\n "
+	    						+ "2. Kedah\t 7. Penang\t 11. Sarawak\n "
+	    						+ "3. Kelantan\t 8. Perak\t 12. Selangor\n "
+	    						+ "4. Melaka\t 9. Perlis\t 13. Terengganu\n "
+	    						+ "5. N.Sembilan\n");
+	    		System.out.print(">>Choice: ");
+	    		try {
+	    			inputState = intInputValidation(1, 13); 
+	    			if(inputState != 4)
+	    				doWhile3 = 1;
+	    			doWhile2 = 1; // Valid input
+				} 
+				catch (IllegalArgumentException e) {
+					System.err.println(e.getMessage());
+					bufferFor5Miliseconds();
+					doWhile2 = 0; // Invalid input
+				}
+	    	}while(doWhile2 != 1);
+	    	
+	    	while(doWhile3 != 1){ //doWhile3
+	    		System.out.println("\nWhich area do you live in?");
+	    		System.out.print(" 1. Alor Gajah\t\t 6. Bemban\t\t 11. Kuala Sungai Baru\t 16. Selandar\n "
+	    						+ "2. Asahan\t\t 7. Bukit Beruang\t 12. Lubok China\t 17. Sungai Rambai\n "
+	    						+ "3. Ayer Keroh\t\t 8. Durian Tunggal\t 13. Masjid Tanah\t 18. Sungai Udang\n "
+	    						+ "4. Bandar Hilir\t 9. Jasin\t\t 14. Melaka Tengah\t 19. Tanjong Kling\n "
+	    						+ "5. Batu Berendam\t 10. Kuala Linggi\t 15. Merlimau\t\t 20. Ujong Pasir\n");
+	    		System.out.print(">>Choice: ");
+	    		try {
+	    			inputArea = intInputValidation(1, 20); 
+	    			doWhile3 = 1; // Valid input
+				} 
+				catch (IllegalArgumentException e) {
+					System.err.println(e.getMessage());
+					bufferFor5Miliseconds();
+					doWhile3 = 0; // Invalid input
+				}
+	    	}
+	    	
+	    	do { //doWhile4
+	    		int validState = validateAddress(inputState);
+	    		
+	    		if(validState == 1) { // proceed
+    	    		doWhile4 = 1; 
+    	    		doWhile1 = 1; // Exit both loops
+	    		}
+	    		else if(validState == 0) {
+	    			System.out.println("\n<<Delivery only available for MELAKA!>>");
+					System.out.println("1. Enter address again");
+					System.out.println("2. Exit to Main Menu");
+					System.out.print(">>Choice: ");
+					try {
+						inputAddressChoice = intInputValidation(1, 2); 
+					} 
+					catch (IllegalArgumentException e) {
+						System.err.println(e.getMessage());
+						bufferFor5Miliseconds();
+					}
+					
+					if(inputAddressChoice == 1){
+						doWhile4 = 1; 
+						doWhile2 = 0; 
+						doWhile3 = 0; // Exit doWhile4 and enter doWhile2/3
+					}
+					else if(inputAddressChoice == 2) {
+						return null;
+					}
+					else {
+						doWhile4 = 0;
+						validState = 0; // Invalid choice
+					}
+	    		}
+	    	}while(doWhile4 != 1);
+    	}while(doWhile1 != 1);
+    	
+    	do { //doWhile5
+    		System.out.print("Enter Unit Number: ");
+    		try {
+    			unit = stringInputValidation();
+    			doWhile5 = 1;}   
+    		catch (IllegalArgumentException e) {
+    			System.err.println(e.getMessage());
+    			bufferFor5Miliseconds();
+    			doWhile5 = 0;}
+    	}while(doWhile5 !=1);
+    	
+    	do { //doWhile6
+    		System.out.print("Enter Street Name: ");
+    		try {
+    			street = stringInputValidation();
+    			doWhile6 = 1;}   
+    		catch (IllegalArgumentException e) {
+    			System.err.println(e.getMessage());
+    			bufferFor5Miliseconds();
+    			doWhile6 = 0;}
+    	}while(doWhile6 !=1);
+
+		do { //doWhile7
+			System.out.print("Enter District: ");
+			try {
+				district = stringInputValidation();
+				doWhile7 = 1;}   
+			catch (IllegalArgumentException e) {
+				System.err.println(e.getMessage());
+				bufferFor5Miliseconds();
+				doWhile7 = 0;}
+		}while(doWhile7 !=1);
+
+		do { //doWhile8
+			System.out.print("Enter Postal Code: ");
+			try {
+				postal = stringInputValidation();
+				doWhile8 = 1;}   
+			catch (IllegalArgumentException e) {
+				System.err.println(e.getMessage());
+				bufferFor5Miliseconds();
+				doWhile8 = 0;}
+		}while(doWhile8 !=1);
+		
+		String area = convertArea(inputArea);
+		Address add = new Address(unit, street, area, district, postal, 4);
+		return add;
+    }
+    
     
     public int intInputValidation(int lower, int upper) throws IllegalArgumentException {
         setScanner(new Scanner(System.in));
