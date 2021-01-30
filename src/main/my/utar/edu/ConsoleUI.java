@@ -411,6 +411,32 @@ public class ConsoleUI {
     	}
     }
     
+    public String convertArea(int rawArea) {
+    	switch(rawArea) {
+    		case 1: return "AG"; 
+    		case 2: return "AH";
+    		case 3: return "AK";
+    		case 4: return "BH";
+    		case 5: return "BD";
+    		case 6: return "BB";
+    		case 7: return "BR";
+    		case 8: return "DT";
+    		case 9: return "JN";
+    		case 10: return "KG";
+    		case 11: return "KS";
+    		case 12: return "LC";
+    		case 13: return "MT";
+    		case 14: return "ME";
+    		case 15: return "ML";
+    		case 16: return "SE";
+    		case 17: return "SR";
+    		case 18: return "SU";
+    		case 19: return "TK";
+    		case 20: return "UP";
+    		default: return null;
+    	}
+    }
+    
     public int intInputValidation(int lower, int upper) throws IllegalArgumentException {
         setScanner(new Scanner(System.in));
         int userInput;
