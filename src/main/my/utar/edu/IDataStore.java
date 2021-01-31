@@ -8,4 +8,7 @@ public interface IDataStore {
 	public List<Delivery> getAllDeliveryCharges();
 	public List<Order> getAllOrders();
 	
+	public void addMember(Member member);
+	public void addItem(Item item);
+	public void addDeliveryCharges(Delivery deliveryCharges);
 }

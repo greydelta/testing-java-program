@@ -31,4 +31,14 @@ public class DataLists implements IDataStore{
 		return orders;
 	}
 	
+	// Methods
+	public void addMember(Member mem) {
+		member.add(mem);
+	}
+	public void addItem(Item itm) {
+		item.add(itm);
+	}
+	public void addDeliveryCharges(Delivery del) {
+		deliveryCharges.add(del);
+	}
 }

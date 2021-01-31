@@ -60,4 +60,12 @@ public class Address{
 	public int getState() {
 		return this.State;}
 	
+	public String getAddressToString() {
+		String result = 
+				getUnitNumber() + ", " + 
+				getStreetName() + ", " +
+				getArea() + ", " + 
+				getDistrict() + ", " +
+				getPostalCode(); 
+		return result;}
 }
