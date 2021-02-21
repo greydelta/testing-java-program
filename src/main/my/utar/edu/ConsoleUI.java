@@ -182,6 +182,36 @@ public class ConsoleUI {
 					status = 0;} // Invalid > Request for input again
 			}while(status != 1);
 			
+			switch(mainMenuChoice){
+				case 1: 
+					login = login();
+
+					break;
+
+				case 2: 
+					System.out.println("\n<<Proceed as Guest>>");
+					Member guest = promptInputDetails();
+					Address add = promptInputAddress();
+					
+					if(add == null) {
+						status = 0;
+					}
+					
+					if(add != null) {
+						guest.setUnitNumber(add.getUnitNumber());
+						guest.setStreetName(add.getStreetName());
+						guest.setArea(add.getArea());
+						guest.setDistrict(add.getDistrict());
+						guest.setPostalCode(add.getPostalCode());
+						guest.setState(add.getState());
+						System.out.println("Delivery Address: " + guest.getAddressToString() +", "+ convertAddress(guest.getState()));
+						status = 1;
+					}
+					login = guest; 
+					break;
+					
+				}	
+		}while(status != 1);
 		return login;
 	}
 	
@@ -203,6 +233,11 @@ public class ConsoleUI {
 			System.err.println(e.getMessage());
 			bufferFor5Miliseconds();}
 
+		switch(choice) {
+			case 3: 
+				choice = 3;
+				break;
+		}
 		return choice;
 	}
 	
