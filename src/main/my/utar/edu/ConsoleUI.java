@@ -281,6 +281,19 @@ public class ConsoleUI {
 		return loginValid;
 	}
 	
+	public Member validateMember(String name, String pass) {
+		List<Member> members = control.getAllMembers();
+		Member result = new Member();
+		for (Member tempMember: members) {
+			if(name.equals(tempMember.getName()) && pass.equals(tempMember.getPassword())) {
+				result = tempMember;
+				break;
+			}
+			else
+				result.setFlag(false);
+		}
+		return result;
+	}
 	
     public Member promptInputDetails(){
     	String name = null, phone = null;
