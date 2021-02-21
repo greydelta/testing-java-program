@@ -212,6 +212,71 @@ public class ConsoleUI {
 		Member loginValid = null;
 		String name = null, pass = null;
 		
+		do { // doWhile3
+			do { //doWhile1
+				System.out.println("\n<<Login>>");
+				
+				do { // innerDoWhile1
+					System.out.print("Enter Name: ");
+					// Check if input is valid
+					try {
+						name = stringInputValidation();
+						innerDoWhile1 = 1;}
+					catch (IllegalArgumentException e) {
+						System.err.println(e.getMessage());
+						bufferFor5Miliseconds();
+						innerDoWhile1 = 0;}
+				}while(innerDoWhile1 != 1);
+				
+				do {
+					System.out.print("Enter Password: ");
+					// Check if input is valid
+					try {
+						pass = stringInputValidation();
+						innerDoWhile2 = 1;}   
+					catch (IllegalArgumentException e) {
+						System.err.println(e.getMessage());
+						bufferFor5Miliseconds();
+						innerDoWhile2 = 0;}
+				}while(innerDoWhile2 != 1);
+				
+				// Both input are valid, proceed to validate
+				loginValid = validateMember(name, pass);
+				doWhile1 = 1;
+			}while(doWhile1 != 1);
+			
+			if(loginValid.getFlag() == true) {
+				System.out.println("\nLogged in as: " + loginValid.getName());
+				System.out.println("Delivery Address: " + loginValid.getAddressToString() +", "+ convertAddress(loginValid.getState()));
+				return loginValid;
+			}
+			else {
+				do {
+					System.out.println("\nIncorrect name/password.");
+					System.out.println("1. Login again");
+					System.out.println("2. Exit to Main Menu");
+					System.out.print(">>Choice: ");
+					try {
+						signInChoice = intInputValidation(1, 2); 
+					} 
+					catch (IllegalArgumentException e) {
+						bufferFor5Miliseconds();
+						System.err.println(e.getMessage());
+					}
+					if(signInChoice == 1) {
+						doWhile1 = 0; 
+						doWhile2 = 1; // Prompt enter input
+					}
+					else if(signInChoice == 2) {
+						return loginValid;
+					}
+					else {
+						doWhile1 = 1;
+						doWhile2 = 0;
+					}
+				}while(doWhile2 != 1);
+			}
+		}while(doWhile3 != 1);
 		
 		return loginValid;
 	}
