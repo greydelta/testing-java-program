@@ -210,6 +210,37 @@ public class ConsoleUI {
 					login = guest; 
 					break;
 					
+				case 3: 
+					System.out.println("\n<<Register>>");
+					
+					Member regUser = promptInputDetails();
+					regUser.setFlag(true);
+					// implement check for existing account
+					Address regAddressUser = promptInputAddress();
+						
+					if(regUser != null && regAddressUser != null) {
+						login = regUser;
+						regUser.setUnitNumber(regAddressUser.getUnitNumber());
+						regUser.setStreetName(regAddressUser.getStreetName());
+						regUser.setArea(regAddressUser.getArea());
+						regUser.setDistrict(regAddressUser.getDistrict());
+						regUser.setPostalCode(regAddressUser.getPostalCode());
+						regUser.setState(regAddressUser.getState());
+						System.out.println("<<Confirmation>>");
+						System.out.println("Member Details: " + regUser.getName() +" ("+ regUser.getPhoneNumber() +") ");
+						System.out.println("Delivery Address: " + regAddressUser.getAddressToString() +", "+ convertAddress(regUser.getState()));
+						System.out.println("\n<<Succesfully registered!>>");
+						status = 1;
+					}
+					else {
+						status = 0;
+					}
+					break;
+					
+				case 4:
+					System.out.println("\nThank you & have a nice day!");
+					System.exit(0);
+					break;
 				}	
 		}while(status != 1);
 		return login;
