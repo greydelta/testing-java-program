@@ -15,6 +15,18 @@ package my.utar.edu;
  * Method A2 : Load all Items 										> public void loadItemsData()
  * Method A3 : Load all Charges 									> public void loadDeliveryChargesData()
  * 
+ * SECTION B (Menus / Members Module)
+ * Method B  : Launch Main Menu & Sub Menu 							> public void launch()
+ * Method B1 : Main Menu  											> public Member mainMenu()
+ * Method B2 : Sub Menu 											> public int subMenu(Member loginValid)
+ * Method B3 : Method to check member login 						> public Member login() 
+ * Method B4 : Method to validate member login 						> public Member validateMember(String name, String pass)
+ * Method B5 : Method to get input details (guest/register user) 	> public Member promptInputDetails()
+ * Method B6 : Method to get input address (guest/register user) 	> public Address promptInputAddress()
+ * Method B7 : Method to validate address 							> public int validateAddress(int state)
+ * Method B8 : Method to convert address from raw data in txt file 	> public String convertAddress(int rawAddress)
+ * Method B9 : Method to convert area from raw data in user input 	> public String convertArea(int rawArea) 
+ * 
  */
 
 
@@ -140,6 +152,12 @@ public class ConsoleUI {
 		System.out.println("Loaded "+count+" rows of data from delivery_charges.txt");
 	}
 	
+	/* =======================================
+	 * ============== SECTION B ==============
+	 * ======================================= */
+	
+	/* Method B : Launch Main Menu & Sub Menu
+	*****************************************/
 	public void launch() {
 		Member loginSession = mainMenu();
 		int choice = -1;
@@ -150,6 +168,8 @@ public class ConsoleUI {
 		}
 	}
 	
+	/* Method B1 : Main Menu
+	*****************************************/
 	public Member mainMenu() {
 		setScanner(new Scanner(System.in));
 		Member login = null;
@@ -246,6 +266,8 @@ public class ConsoleUI {
 		return login;
 	}
 	
+	/* Method B2 : Sub Menu
+	*****************************************/
 	public int subMenu(Member loginValid) {
 		int choice = -1;
 		
@@ -272,6 +294,8 @@ public class ConsoleUI {
 		return choice;
 	}
 	
+	/* Method B3 : Method to check member login
+	*****************************************/
 	public Member login() {
 		int signInChoice = -1, doWhile1 = -1, doWhile2 = -1, doWhile3 = -1,
 			innerDoWhile1 = -1, innerDoWhile2 = -1;
@@ -347,6 +371,8 @@ public class ConsoleUI {
 		return loginValid;
 	}
 	
+	/* Method B4 : Method to validate member login
+	*****************************************/
 	public Member validateMember(String name, String pass) {
 		List<Member> members = control.getAllMembers();
 		Member result = new Member();
@@ -361,6 +387,8 @@ public class ConsoleUI {
 		return result;
 	}
 	
+    /* Method B5 : Method to get input details (guest/registering user)
+	*****************************************/
     public Member promptInputDetails(){
     	String name = null, phone = null;
     	int doWhile1 = -1, doWhile2 = -1;
@@ -392,6 +420,8 @@ public class ConsoleUI {
     	return member;
     }
     
+    /* Method B6 : Method to get input address (guest/registering user)
+	*****************************************/
     public Address promptInputAddress() {
     	setScanner(new Scanner(System.in));
     	
@@ -527,6 +557,8 @@ public class ConsoleUI {
 		return add;
     }
     
+    /* Method B7 : Method to validate address
+   	*****************************************/
     public int validateAddress(int state) {
     	if(state == 4) 
     		return 1; // Melaka
@@ -536,6 +568,8 @@ public class ConsoleUI {
     		return -1; // Input validation
     }
     
+    /* Method B8 : Method to convert address from raw data in txt file
+   	*****************************************/
     public String convertAddress(int rawAddress) {
     	switch(rawAddress) {
     		case 1: return "Johor"; 
@@ -555,6 +589,8 @@ public class ConsoleUI {
     	}
     }
     
+    /* Method B9 : Method to convert area from raw data in user input
+   	*****************************************/
     public String convertArea(int rawArea) {
     	switch(rawArea) {
     		case 1: return "AG"; 
