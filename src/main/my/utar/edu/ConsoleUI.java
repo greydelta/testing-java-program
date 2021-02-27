@@ -287,6 +287,9 @@ public class ConsoleUI {
 			bufferFor5Miliseconds();}
 
 		switch(choice) {
+			case 1: 
+				placeOrder(loginValid);
+				break;
 			case 3: 
 				choice = 3;
 				break;
@@ -617,6 +620,11 @@ public class ConsoleUI {
     	}
     }
     
+    public void placeOrder(Member loginValid) {
+    	displayItemList(loginValid);
+		
+    }
+    
     public void displayItemList(Member loginValid) {
     	List<Item> items = control.getAllItems();
     	int index = 1;
@@ -645,6 +653,7 @@ public class ConsoleUI {
 				System.out.printf("%-15s \n","N/A");
 		}
     }
+    
     public double calculatePromotionalPrice(Item item, Member member) {
 		final double DISCOUNT_RATE = 0.95;
 		double promotionalPrice = 0;
@@ -654,6 +663,7 @@ public class ConsoleUI {
 			promotionalPrice = item.getNonMemberPrice() * DISCOUNT_RATE;
 		return promotionalPrice;
 	}
+    
     public int intInputValidation(int lower, int upper) throws IllegalArgumentException {
         setScanner(new Scanner(System.in));
         int userInput;
