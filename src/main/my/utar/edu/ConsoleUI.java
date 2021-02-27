@@ -617,6 +617,34 @@ public class ConsoleUI {
     	}
     }
     
+    public void displayItemList(Member loginValid) {
+    	List<Item> items = control.getAllItems();
+    	int index = 1;
+    	System.out.println("\n<<Place Order>>");
+		System.out.println("Item\tItem\t\t\t\t Item\t Price\t  Promotional\tPromotional");
+		System.out.println(" ID\tName\t\t\t\t Type\t (RM)\t  Item\t\tPrice (RM)");
+		System.out.println("----\t-------------------------------\t ------\t -------  -----------\t-----------");
+		for (Item tempItem: items) {
+			
+			if(index <= 9)
+				System.out.printf(" 0%-5d %-32s %-8s", index++, tempItem.getItemName(), tempItem.getItemType());
+			else
+				System.out.printf(" %-6d %-32s %-8s", index++, tempItem.getItemName(), tempItem.getItemType());
+		
+			if (loginValid.getFlag() == true)
+				System.out.printf(" %-13.2f", tempItem.getMemberPrice());
+			else
+				System.out.printf(" %-13.2f", tempItem.getNonMemberPrice());
+			
+			System.out.printf("%-10s", tempItem.getPromotionalItem());
+			if(tempItem.getPromotionalItem() == 'Y') {
+				double promotionalPrice = calculatePromotionalPrice(tempItem, loginValid);
+				System.out.printf("%-15.2f \n", promotionalPrice);
+			}
+			else
+				System.out.printf("%-15s \n","N/A");
+		}
+    }
     public int intInputValidation(int lower, int upper) throws IllegalArgumentException {
         setScanner(new Scanner(System.in));
         int userInput;
