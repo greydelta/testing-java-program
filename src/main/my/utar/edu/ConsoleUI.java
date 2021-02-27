@@ -645,6 +645,15 @@ public class ConsoleUI {
 				System.out.printf("%-15s \n","N/A");
 		}
     }
+    public double calculatePromotionalPrice(Item item, Member member) {
+		final double DISCOUNT_RATE = 0.95;
+		double promotionalPrice = 0;
+		if (member.getFlag() == true)
+			promotionalPrice = item.getMemberPrice() * DISCOUNT_RATE;
+		else 
+			promotionalPrice = item.getNonMemberPrice() * DISCOUNT_RATE;
+		return promotionalPrice;
+	}
     public int intInputValidation(int lower, int upper) throws IllegalArgumentException {
         setScanner(new Scanner(System.in));
         int userInput;
