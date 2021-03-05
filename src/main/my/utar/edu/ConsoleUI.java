@@ -753,6 +753,17 @@ public class ConsoleUI {
 		return subTotal;
 	}
     
+    public double calculateAdditionalCharge(double itemTotal) {
+    	double additionalCharge = 0;
+    	if(itemTotal > 1 && itemTotal < 25)
+    		additionalCharge = 3;
+    	else if(itemTotal >= 25)
+    		additionalCharge = 0;
+    	else
+    		throw new IllegalArgumentException("Item cannot be 0 or lesser");
+    	return additionalCharge;
+    }
+    
     public int intInputValidation(int lower, int upper) throws IllegalArgumentException {
         setScanner(new Scanner(System.in));
         int userInput;
