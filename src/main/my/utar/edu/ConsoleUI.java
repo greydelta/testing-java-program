@@ -764,6 +764,15 @@ public class ConsoleUI {
     	return additionalCharge;
     }
     
+    public double calculateGrandTotal(double itemTotal, double deliveryCharge, double additionalCharge) {
+    	double grandTotal = 0; 
+    	grandTotal = itemTotal + deliveryCharge + additionalCharge;
+    	if(grandTotal<0) {
+    		throw new IllegalArgumentException("Invalid Grand Total");
+    	}
+    	return grandTotal;
+    }
+    
     public int intInputValidation(int lower, int upper) throws IllegalArgumentException {
         setScanner(new Scanner(System.in));
         int userInput;
