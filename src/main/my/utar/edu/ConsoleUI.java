@@ -710,6 +710,19 @@ public class ConsoleUI {
     	
     }
     
+    public int checkItemQuantity(int getTotalNumOfItems,int quantity) {
+    	final int maxItemQty=20;
+    	int totalNumOfItemsInOrder=getTotalNumOfItems;
+    	totalNumOfItemsInOrder += quantity;
+    	
+    	if(totalNumOfItemsInOrder>maxItemQty) {
+			System.out.println("<<Total items per order is capped at 20!>>");
+			System.out.println("\n<<Item Not Added>>");
+			quantity = 0;
+    	}
+    	return quantity;
+    }
+    
     public int intInputValidation(int lower, int upper) throws IllegalArgumentException {
         setScanner(new Scanner(System.in));
         int userInput;
