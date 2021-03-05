@@ -664,6 +664,23 @@ public class ConsoleUI {
 		return promotionalPrice;
 	}
     
+	public int promptInputItem() {
+		int itemID = 0;
+		int doWhile = -1;
+		do {
+			System.out.println("\n<<Add Items to Order>>");
+			System.out.print("Enter Item ID: ");
+			try {
+				itemID = intInputValidation(1, 20);
+				doWhile = 1;
+			} catch (IllegalArgumentException e) {
+				System.err.println(e.getMessage());
+				bufferFor5Miliseconds();
+				doWhile = 0;
+			}
+		} while (doWhile != 1);
+		return itemID;
+	}
     public int intInputValidation(int lower, int upper) throws IllegalArgumentException {
         setScanner(new Scanner(System.in));
         int userInput;
