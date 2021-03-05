@@ -620,11 +620,15 @@ public class ConsoleUI {
     	}
     }
     
+    /* Method C : Method to initiate Order Module
+   	*****************************************/
     public void placeOrder(Member loginValid) {
     	displayItemList(loginValid);
 		
     }
     
+    /* Method C1 : Method to Display all items
+   	*****************************************/
     public void displayItemList(Member loginValid) {
     	List<Item> items = control.getAllItems();
     	int index = 1;
@@ -654,6 +658,8 @@ public class ConsoleUI {
 		}
     }
     
+    /* Method C2 : Method to compute Item promotional price
+   	*****************************************/
     public double calculatePromotionalPrice(Item item, Member member) {
 		final double DISCOUNT_RATE = 0.95;
 		double promotionalPrice = 0;
@@ -664,6 +670,11 @@ public class ConsoleUI {
 		return promotionalPrice;
 	}
     
+/* Method C3 : Method to get input on Items Selected (Place order)
+   	*****************************************/
+    
+    /* Method C3(A) : Sub-Method to get input on Items Selected (Place order)
+   	*****************************************/
 	public int promptInputItem() {
 		int itemID = 0;
 		int doWhile = -1;
@@ -682,6 +693,8 @@ public class ConsoleUI {
 		return itemID;
 	}
     
+	 /* Method C3(B) : Sub-Method to get input on Items Quantity (Place order)
+   	*****************************************/
     public int promptInputQuantity(int itemID) {
     	List<Item> items = control.getAllItems();
     	int quantity = 0, doWhile = -1;
@@ -710,6 +723,8 @@ public class ConsoleUI {
     	
     }
     
+    /* Method C3(C) : Sub-Method to check whether item quantity is > max items allowed (20)-> Assumption #4
+   	*****************************************/
     public int checkItemQuantity(int getTotalNumOfItems,int quantity) {
     	final int maxItemQty=20;
     	int totalNumOfItemsInOrder=getTotalNumOfItems;
@@ -723,6 +738,8 @@ public class ConsoleUI {
     	return quantity;
     }
     
+    /* Method C4 : Method to Compute Delivery Charges
+   	*****************************************/
     public double calculateDeliveryCharge(String area) {
     	List<Delivery> delivery = control.getAllDeliveryCharges();
     	double deliveryRate = 0;
@@ -737,6 +754,8 @@ public class ConsoleUI {
     	return deliveryRate;
     }
     
+    /* Method C5 : Method to compute subTotal of an (item x quantity) + with/without promotion
+   	*****************************************/
     public double calculateItemPrice(Item item, int quantity, Member member) {
 
 		double price = 0, subTotal = 0;
@@ -753,6 +772,8 @@ public class ConsoleUI {
 		return subTotal;
 	}
     
+    /* Method C6 : Method to compute additional charge
+   	*****************************************/
     public double calculateAdditionalCharge(double itemTotal) {
     	double additionalCharge = 0;
     	if(itemTotal > 1 && itemTotal < 25)
@@ -764,6 +785,8 @@ public class ConsoleUI {
     	return additionalCharge;
     }
     
+    /* Method C7 : Method to compute grand total
+   	*****************************************/
     public double calculateGrandTotal(double itemTotal, double deliveryCharge, double additionalCharge) {
     	double grandTotal = 0; 
     	grandTotal = itemTotal + deliveryCharge + additionalCharge;
