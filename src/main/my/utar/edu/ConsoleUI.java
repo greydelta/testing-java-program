@@ -737,6 +737,22 @@ public class ConsoleUI {
     	return deliveryRate;
     }
     
+    public double calculateItemPrice(Item item, int quantity, Member member) {
+
+		double price = 0, subTotal = 0;
+		
+		if(item.getPromotionalItem()=='Y') 
+			price=calculatePromotionalPrice(item,member); //straight away call method C2
+		else
+			if (member.getFlag() == true)
+				price = item.getMemberPrice();
+			else 
+				price = item.getNonMemberPrice();
+
+		subTotal = price * quantity;
+		return subTotal;
+	}
+    
     public int intInputValidation(int lower, int upper) throws IllegalArgumentException {
         setScanner(new Scanner(System.in));
         int userInput;
