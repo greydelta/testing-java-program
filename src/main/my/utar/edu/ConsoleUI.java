@@ -723,6 +723,20 @@ public class ConsoleUI {
     	return quantity;
     }
     
+    public double calculateDeliveryCharge(String area) {
+    	List<Delivery> delivery = control.getAllDeliveryCharges();
+    	double deliveryRate = 0;
+    	
+    	for (Delivery tempDelivery : delivery) {
+    		if(area.equals(tempDelivery.getAreaCode()))
+    			deliveryRate = tempDelivery.getDeliveryCharges();
+    	}
+    	if(deliveryRate == 0)
+    		throw new IllegalArgumentException("The code is available and the deliveryRate is not 0");
+    	
+    	return deliveryRate;
+    }
+    
     public int intInputValidation(int lower, int upper) throws IllegalArgumentException {
         setScanner(new Scanner(System.in));
         int userInput;
