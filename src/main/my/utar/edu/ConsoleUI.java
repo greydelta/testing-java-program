@@ -681,6 +681,35 @@ public class ConsoleUI {
 		} while (doWhile != 1);
 		return itemID;
 	}
+    
+    public int promptInputQuantity(int itemID) {
+    	List<Item> items = control.getAllItems();
+    	int quantity = 0, doWhile = -1;
+    	
+    	
+    	do { // doWhile
+    		int count = 0;
+        	for (Item tempItem: items) {
+        		++count;
+        		if(count == itemID) {
+        			System.out.print("Enter Quantity ("+tempItem.getItemName()+"): ");
+	        		try {
+	            		quantity = intInputValidation(1, 20); // Capped at 20
+	            		doWhile = 1;} 
+	            	catch (IllegalArgumentException e) {
+	            		System.err.println(e.getMessage());
+	            		bufferFor5Miliseconds();
+	            		doWhile = 0;
+	            		break;}
+        		}
+        	}
+        	
+    	}while(doWhile != 1);
+    	
+    	return quantity;
+    	
+    }
+    
     public int intInputValidation(int lower, int upper) throws IllegalArgumentException {
         setScanner(new Scanner(System.in));
         int userInput;
