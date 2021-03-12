@@ -51,4 +51,14 @@ public class Controller {
 		dataLists.addDeliveryCharges(deliveryCharges);
 	}
 	
+	public void addOrders(Order orderRaw) {
+		Order order = new Order(orderRaw);
+		int tempSize = getAllOrders().size(), size = 0;
+		if(tempSize == 0)
+			size = 1;
+		else 
+			size = tempSize + 1;
+		order.setOrderID(size);
+		dataLists.addOrders(order);
+	}
 }

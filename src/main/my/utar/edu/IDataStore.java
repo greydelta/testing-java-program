@@ -11,4 +11,5 @@ public interface IDataStore {
 	public void addMember(Member member);
 	public void addItem(Item item);
 	public void addDeliveryCharges(Delivery deliveryCharges);
+	public void addOrders(Order order);
 }
