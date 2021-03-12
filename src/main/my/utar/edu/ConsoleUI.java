@@ -624,6 +624,7 @@ public class ConsoleUI {
    	*****************************************/
     public void placeOrder(Member loginValid) {
     	displayItemList(loginValid);
+		Order order = promptInputOrderItems(loginValid);
 		
     }
     
@@ -672,6 +673,54 @@ public class ConsoleUI {
     
 /* Method C3 : Method to get input on Items Selected (Place order)
    	*****************************************/
+    public Order promptInputOrderItems(Member loginValid) {
+    	List<Item> items = control.getAllItems();
+    	int doWhile1 = -1, itemID = 0, choice = 0, innerDoWhile3 = -1, itemQuantity = 0;
+    	Order order = new Order(); 
+    	double itemTotal = 0, deliveryCharge = 0, additionalCharge = 0, totalPrice = 0;
+    	int inputQuantity=0;
+    	
+    	do { 
+    		itemID = promptInputItem();
+    		inputQuantity = promptInputQuantity(itemID);
+    		
+    		itemQuantity= checkItemQuantity(order.getTotalNumOfItems(),inputQuantity);
+    		
+    		
+    		if(itemQuantity != 0) {
+    			int count = 0;
+        		for (Item tempItem: items) {
+            		++count;
+            		if(count == itemID) {
+            			itemTotal += calculateItemPrice(tempItem, itemQuantity, loginValid);
+                    	order.addItemToOrder(String.valueOf(itemID), String.valueOf(itemQuantity));
+            			break;
+            		}
+        		}
+    		} 
+    		
+    	deliveryCharge = calculateDeliveryCharge(loginValid.getArea());
+    	
+    	additionalCharge = calculateAdditionalCharge(itemTotal);
+    	
+    	totalPrice = calculateGrandTotal(itemTotal, deliveryCharge, additionalCharge);
+    		
+    	order.setOrderItemsSubTotal(itemTotal);
+    	order.setOrderDeliveryCharges(deliveryCharge);
+    	order.setOrderAdditionalCharges(additionalCharge);
+    	order.setOrderTotalPrice(totalPrice);
+    	control.addOrders(order);
+    		
+    	System.out.println("\n<<Order Summary>>");
+    	System.out.printf("Sub-Total: %-15.2f", order.getOrderItemsSubTotal());
+    	System.out.printf("\nDelivery charges: %-15.2f", order.getOrderDeliveryCharges());
+    	System.out.printf("\nAdditional charges: %-6.2f", order.getOrderAdditionalCharges()); 
+    	System.out.print("\n---------------------------");
+    	System.out.printf("\nGRAND TOTAL: %-15.2f", order.getOrderTotalPrice()); 
+    	System.out.print("\n"); 
+    	
+    	return order;
+    }
     
     /* Method C3(A) : Sub-Method to get input on Items Selected (Place order)
    	*****************************************/
