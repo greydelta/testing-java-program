@@ -94,4 +94,10 @@ public class Order {
 	public void setOrderStatus(boolean orderStatus) {
 		this.orderStatus = orderStatus;}
 
+	// Method to add itemID and quantity to this Order
+	public void addItemToOrder(String itemID, String itemQuantity) {
+		this.orderItemsID.add(itemID);
+		this.orderItemsQuantity.add(itemQuantity);
+	}
+	
 }
