@@ -698,6 +698,27 @@ public class ConsoleUI {
             		}
         		}
     		} 
+        	do { //innerDoWhile3
+
+        		System.out.println("\n<<Item Summary>>");
+            	System.out.println("<<Items in current order: "+ order.getTotalNumOfItems() +">>");
+            	System.out.println("1. Add more items");
+            	System.out.println("2. Proceed to payment");
+            	System.out.print(">>Choice: ");
+            	try {
+            		choice = intInputValidation(1, 2);
+            		innerDoWhile3 = 1;} 
+            	catch (IllegalArgumentException e) {
+            		System.err.println(e.getMessage());
+            		bufferFor5Miliseconds();
+            		innerDoWhile3 = 0;}
+            		
+            	if(choice == 1)
+            		doWhile1 = 0;
+            	else if(choice == 2)
+            		doWhile1 = 1;
+        	}while(innerDoWhile3 != 1);	
+    	}while(doWhile1 != 1);
     		
     	deliveryCharge = calculateDeliveryCharge(loginValid.getArea());
     	
