@@ -27,6 +27,15 @@ package my.utar.edu;
  * Method B8 : Method to convert address from raw data in txt file 	> public String convertAddress(int rawAddress)
  * Method B9 : Method to convert area from raw data in user input 	> public String convertArea(int rawArea) 
  * 
+ * SECTION C (Place Order Module)
+ * Method C  : Method to initiate Order Module 												> public void placeOrder(Member loginValid)
+ * Method C1 : Method to Display all items 													> public void displayItemList(Member loginValid) 
+ * Method C2 : Method to compute Item promotional price  									> public static double calculatePromotionalPrice(Item item, Member member)
+ * Method C3 : Method to get input on Items Selected (Place order) 							>  public void promptInputOrderItems(Member loginValid)
+ * Method C4 : Method to Compute Delivery Charges 											> public double calculateDeliveryCharge(String area)
+ * Method C5 : Method to compute subTotal of an (item x quantity) + with/without promotion 	> public static double calculateItemPrice(Item item, int quantity, Member member)
+ * Method C6 : Method to compute additional charge											> public int calculateAdditionalCharge(double itemTotal)
+ * 
  */
 
 
@@ -619,6 +628,10 @@ public class ConsoleUI {
     		default: return null;
     	}
     }
+    
+    /* =======================================
+	 * ============== SECTION C ==============
+	 * ======================================= */
     
     /* Method C : Method to initiate Order Module
    	*****************************************/
