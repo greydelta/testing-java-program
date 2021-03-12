@@ -7,6 +7,7 @@ public class Order {
 	private List<String> orderItemsID; // All itemID in this Order
 	private List<String> orderItemsQuantity; // All item's quantity in this Order
 	private double orderItemsSubTotal; // SubTotal += (all items in order *  each respective quantity)
+	// note: promotional item, member/non-member price is calculated in method
 	private double orderDeliveryCharges; // Based on user address area
 	private double orderAdditionalCharges; // Add RM3 if orderTotalPrice < RM25
 	private double orderTotalPrice; // Grand Total = SubTotal + Delivery + Additional
@@ -98,6 +99,14 @@ public class Order {
 	public void addItemToOrder(String itemID, String itemQuantity) {
 		this.orderItemsID.add(itemID);
 		this.orderItemsQuantity.add(itemQuantity);
+	}
+	
+	// Method to get total number of items in this order
+	public int getTotalNumOfItems() {
+		int totalItems = 0;
+		for (int i=0; i<orderItemsQuantity.size(); i++)
+			totalItems += Integer.parseInt(orderItemsQuantity.get(i));
+		return totalItems;
 	}
 	
 }
