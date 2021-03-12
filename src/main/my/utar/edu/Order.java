@@ -122,4 +122,15 @@ public class Order {
 		return result;
 	}
 	
+	// Method to get (n) item's quantity, where n = 0,1,2...
+	public int getItemQuantityAt(int iteration) {
+		int count = -1, result = 0;
+		for (String tempItem : orderItemsQuantity){
+			count++;
+			if(count == iteration) {
+				result = Integer.parseInt(tempItem);
+			}
+		}
+		return result;
+	}
 }
