@@ -109,4 +109,17 @@ public class Order {
 		return totalItems;
 	}
 	
+	// Method to get (n) item's itemID, where n = 0,1,2...
+	public int getItemIDAt(int iteration) {
+		int count = -1, result = 0;
+		for (String tempItem : orderItemsID){
+			count++;
+			if(count == iteration) {
+				result = Integer.parseInt(tempItem);
+				break;
+			}
+		}
+		return result;
+	}
+	
 }
