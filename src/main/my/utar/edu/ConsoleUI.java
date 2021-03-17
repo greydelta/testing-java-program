@@ -885,6 +885,28 @@ public class ConsoleUI {
 
     	return paymentStatus;
     }
+     
+    public int promptInputMakePayment(Member loginValid, Order order) {
+    	int choice = -1, doWhile1 = -1;
+    	String paymentStatus;
+    	
+    	do { //doWhile1
+    		System.out.println("\n<<Payment>>");
+        	System.out.println("1. Online Banking");
+        	System.out.println("2. Credit Card");
+        	System.out.print(">>Choice: ");
+        	try {
+        		choice = intInputValidation(1, 2);
+        		doWhile1 = 1;}
+        	catch (IllegalArgumentException e) {
+        		System.err.println(e.getMessage());
+        		bufferFor5Miliseconds();
+        		doWhile1 = 0;}
+    	}while(doWhile1 != 1);
+    	return choice;
+    	
+    }
+    
     public int intInputValidation(int lower, int upper) throws IllegalArgumentException {
         setScanner(new Scanner(System.in));
         int userInput;
