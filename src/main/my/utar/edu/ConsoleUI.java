@@ -638,6 +638,7 @@ public class ConsoleUI {
     public void placeOrder(Member loginValid) {
     	displayItemList(loginValid);
 		Order order = promptInputOrderItems(loginValid);
+		String dumb = makePayment(loginValid, order); //why dumb?
 		
     }
     
@@ -879,6 +880,11 @@ public class ConsoleUI {
     	return grandTotal;
     }
     
+    public String makePayment(Member loginValid, Order order) {
+    	String paymentStatus;
+
+    	return paymentStatus;
+    }
     public int intInputValidation(int lower, int upper) throws IllegalArgumentException {
         setScanner(new Scanner(System.in));
         int userInput;
