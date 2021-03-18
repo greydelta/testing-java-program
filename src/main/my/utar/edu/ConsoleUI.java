@@ -907,6 +907,21 @@ public class ConsoleUI {
     	
     }
     
+    public String makingPayment(int choice, double price, Payment payment) {
+    	String status = "Fail";
+    	switch(choice) {
+		case 1: 
+			status = payment.makingPayment("Online Banking", status, price);
+			break;
+		case 2:
+			status = payment.makingPayment("Credit Card", status, price);
+			break;
+		default:
+			throw new IllegalArgumentException("Invalid Payment Choice");
+    	}
+    	return status;
+    }
+    
     public int intInputValidation(int lower, int upper) throws IllegalArgumentException {
         setScanner(new Scanner(System.in));
         int userInput;
