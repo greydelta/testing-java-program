@@ -883,6 +883,44 @@ public class ConsoleUI {
     public String makePayment(Member loginValid, Order order) {
     	String paymentStatus;
 
+    	int doWhile1 = -1, doWhile2 = -1, choice = -1;
+    		
+    	do { //doWhile1
+    			//paymentStatus = promptInputMakePayment(loginValid, order);
+    			choice=promptInputMakePayment(loginValid, order);
+    			paymentStatus = makingPayment(choice, order.getOrderTotalPrice(), new Payment());
+    			do { //doWhile2
+	    	    	System.out.println("\n<<Payment Response>>");
+	    	    	if(String.valueOf(paymentStatus).equals("Succesful")) {
+	    	    		order.setOrderStatus(true);
+	    	    		System.out.println("Paid & Ready for Delivery");
+	    	    	}
+	    	    	
+	    			if(paymentStatus == "Fail") {
+	    				order.setOrderStatus(false);
+	    				
+	    				System.out.println("Pending for Payment\n");
+	        			System.out.println("1. Try another payment method");
+	        	        System.out.println("2. Proceed without payment");
+	        	        System.out.print(">>Choice: ");
+	        	        try {
+	            	    	choice = intInputValidation(1, 2);
+	            	    	doWhile2 = 1;}
+	            	    catch (IllegalArgumentException e) {
+	            	    	System.err.println(e.getMessage());
+	            	    	bufferFor5Miliseconds();
+	            	    	doWhile2 = 0;}
+	    			}
+    			}while(doWhile2 != 1);
+    			
+    			if(choice == 1)
+    				doWhile1 = 0;
+    			else if(choice == 2)
+    				return null;
+    			else 
+    				doWhile1 = 0;
+    		}while(doWhile1 != -1);
+    	
     	return paymentStatus;
     }
      
