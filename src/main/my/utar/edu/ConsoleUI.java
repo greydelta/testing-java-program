@@ -41,6 +41,13 @@ package my.utar.edu;
  * Method D1 : Method to get input on Payment details (Make Payment) 	> promptInputMakePayment(Member loginValid, Order order)
  * Method D2 : Method to process Payment details 						> makingPayment(int choice, double price, Payment payment)
  * 
+ * SECTION E (Track Order)
+ * Method E : Method Method to initiate Track Order 	> trackOrder(Member loginValid)
+ * 
+ * SECTION F (Utility Methods)
+ * Method F1 : Method for integer input validation 		> public int intInputValidation(int min, int max) throws IllegalArgumentException 
+ * Method F2 : Method for string input validation		> public String stringInputValidation() throws IllegalArgumentException
+ * Method F3 : Pause execution for 5 seconds			> public void bufferFor5Miliseconds()
  */
 
 
@@ -978,8 +985,21 @@ public class ConsoleUI {
     	return status;
     }
     
+    /* =======================================
+	 * ============== SECTION E ==============
+	 * ======================================= */
+    
+    /* Method E : Method Method to initiate Track Order
+   	*****************************************/
     public void trackOrder(Member loginValid) {
     }
+    
+    /* =======================================
+	 * ============== SECTION F ==============
+	 * ======================================= */
+    
+    /* Method F1 : Method for integer input validation
+	*****************************************/
     public int intInputValidation(int lower, int upper) throws IllegalArgumentException {
         setScanner(new Scanner(System.in));
         int userInput;
@@ -1018,6 +1038,8 @@ public class ConsoleUI {
             throw new IllegalArgumentException("\nEnter integers Only!");
     }
     
+    /* Method F2 : Method for string input validation
+	*****************************************/
     public String stringInputValidation() throws IllegalArgumentException{
     	setScanner(new Scanner(System.in));
     	String userInput;
@@ -1032,6 +1054,8 @@ public class ConsoleUI {
     		throw new IllegalArgumentException("Scanner is closed");	
     }
     
+    /* Method F3 : Pause execution for 5 seconds
+	*****************************************/
     public void bufferFor5Miliseconds() {
     	try {
 			TimeUnit.MILLISECONDS.sleep(500);}
