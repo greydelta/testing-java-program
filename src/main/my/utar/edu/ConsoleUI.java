@@ -304,6 +304,9 @@ public class ConsoleUI {
 			case 1: 
 				placeOrder(loginValid);
 				break;
+			case 2: 
+				trackOrder(loginValid);
+				break;
 			case 3: 
 				choice = 3;
 				break;
@@ -975,6 +978,8 @@ public class ConsoleUI {
     	return status;
     }
     
+    public void trackOrder(Member loginValid) {
+    }
     public int intInputValidation(int lower, int upper) throws IllegalArgumentException {
         setScanner(new Scanner(System.in));
         int userInput;
