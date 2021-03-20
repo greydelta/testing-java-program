@@ -36,6 +36,11 @@ package my.utar.edu;
  * Method C5 : Method to compute subTotal of an (item x quantity) + with/without promotion 	> public static double calculateItemPrice(Item item, int quantity, Member member)
  * Method C6 : Method to compute additional charge											> public int calculateAdditionalCharge(double itemTotal)
  * 
+ * SECTION D (Make Payment)
+ * Method D : Method to initiate payment 								> makePayment(Member loginValid, Order order)
+ * Method D1 : Method to get input on Payment details (Make Payment) 	> promptInputMakePayment(Member loginValid, Order order)
+ * Method D2 : Method to process Payment details 						> makingPayment(int choice, double price, Payment payment)
+ * 
  */
 
 
@@ -880,6 +885,12 @@ public class ConsoleUI {
     	return grandTotal;
     }
     
+    /* =======================================
+   	 * ============== SECTION D ==============
+   	 * ======================================= */
+    
+    /* Method D : Method to initiate payment
+	*****************************************/
     public String makePayment(Member loginValid, Order order) {
     	String paymentStatus;
 
@@ -924,6 +935,8 @@ public class ConsoleUI {
     	return paymentStatus;
     }
      
+    /* Method D1 : Method to get input on Payment details (Make Payment)
+   	*****************************************/
     public int promptInputMakePayment(Member loginValid, Order order) {
     	int choice = -1, doWhile1 = -1;
     	String paymentStatus;
@@ -945,6 +958,8 @@ public class ConsoleUI {
     	
     }
     
+    /* Method D2 : Method to process Payment details
+   	*****************************************/
     public String makingPayment(int choice, double price, Payment payment) {
     	String status = "Fail";
     	switch(choice) {
