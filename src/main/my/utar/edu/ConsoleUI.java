@@ -992,6 +992,9 @@ public class ConsoleUI {
     /* Method E : Method Method to initiate Track Order
    	*****************************************/
     public void trackOrder(Member loginValid) {
+    	displayAllOrders(loginValid);
+    }
+    
     public void displayAllOrders(Member loginValid) {
     	List<Order> order = control.getAllOrders();
     	List<Item> item = control.getAllItems();
@@ -1011,6 +1014,7 @@ public class ConsoleUI {
 		System.out.println("Delivery Address: " + loginValid.getAddressToString() +", "+ convertAddress(loginValid.getState()));
 		
 		System.out.println("\n<<List of Orders>>");
+		System.out.println("=================================================");
 		System.out.println(" ID\tGrand Total\tOrder Status");
 		System.out.println("----\t-----------\t------------");
 			
@@ -1025,7 +1029,10 @@ public class ConsoleUI {
 			String formatPrice = String.format("%.2f", tempOrder.getOrderTotalPrice());
 			System.out.println(tempOrder.getOrderID() +"\tRM "+ formatPrice +"\t"+ orderStatus);
 		}
+ 		System.out.println("=================================================");
+		
  		System.out.println("\n<<List of Orders (Detailed)>>");
+ 		System.out.println("===================================================================================");
  		for (Order tempOrder: order) {  // loop for (number of orders) in Order
  			if(tempOrder.getOrderID() <= 9)
 				System.out.print("Order ID: 0");
@@ -1034,6 +1041,7 @@ public class ConsoleUI {
  			System.out.println(tempOrder.getOrderID() + "\n"); // get OrderID
  			System.out.println("Item\tItem\t\t\t\t Item\t Price\t  Quantity\tPrice");
  	 		System.out.println(" ID\tName\t\t\t\t Type\t (RM)\t  per Item\t(RM)");
+ 	 		System.out.println("----\t-------------------------------\t ------\t -------  -----------\t-----------");
  			
  			for(int i = 0; i < tempOrder.getOrderItemsID().size(); i++) {	// loop for (number of items) in 1 Order
  				
@@ -1064,6 +1072,7 @@ public class ConsoleUI {
  				}
 	 		}
  				
+ 			System.out.println("----\t-------------------------------\t ------\t -------  -----------\t-----------");
  			System.out.print("\n\t\t\t\t\t\t\t  Sub-Total:\t");
  			System.out.printf("%-8.2f", tempOrder.getOrderItemsSubTotal());
  			System.out.print("\n\t\t\t\t\t\t\t  (+ Charges) \t");
@@ -1074,6 +1083,7 @@ public class ConsoleUI {
  			System.out.print("\n\t\t\t\t\t\t\t  -------------------------");
  			System.out.print("\n\t\t\t\t\t\t\t  Grand Total:\t");
  			System.out.printf("%-8.2f", tempOrder.getOrderTotalPrice());
+ 			System.out.println("\n===================================================================================");
     	}
     	
     	}
