@@ -51,6 +51,17 @@ package my.utar.edu;
  * Method F3 : Pause execution for 5 seconds			> public void bufferFor5Miliseconds()
  */
 
+/*
+ * Assumptions
+ * 1. Existing users (in cust_db) are from valid states only.
+ * 2. Guest / Newly Registered users will be checked by the system on their address, if not in Melaka > cannot place order
+ * 3. Delivery Address 
+ * 		- Member > will use existing address (can't choose to send to new address)
+ * 		- Guest / Registered member > will use recent address
+ * 4. Placing Order
+ * 		> Item Quantity is capped at 20 (max) PER Order
+ */
+
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
