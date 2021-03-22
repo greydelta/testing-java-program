@@ -992,6 +992,91 @@ public class ConsoleUI {
     /* Method E : Method Method to initiate Track Order
    	*****************************************/
     public void trackOrder(Member loginValid) {
+    public void displayAllOrders(Member loginValid) {
+    	List<Order> order = control.getAllOrders();
+    	List<Item> item = control.getAllItems();
+    	
+    	System.out.println("\n<<Track Orders>>");
+    	
+    	if(order.size() == 0 )
+    		System.out.println("<<No orders found>>");
+    	else {
+    	System.out.println("<<Customer Details>>");
+		System.out.println("Name: " + loginValid.getName());
+		if(loginValid.getFlag() == true)
+			System.out.println("Membership: " + "Member");
+		else
+			System.out.println("Membership: " + "Guest");
+		System.out.println("Phone Number: " + loginValid.getPhoneNumber());
+		System.out.println("Delivery Address: " + loginValid.getAddressToString() +", "+ convertAddress(loginValid.getState()));
+		
+		System.out.println("\n<<List of Orders>>");
+		System.out.println(" ID\tGrand Total\tOrder Status");
+		System.out.println("----\t-----------\t------------");
+			
+		for (Order tempOrder: order) {
+			if(tempOrder.getOrderID() <= 9)
+				System.out.print(" 0");
+			String orderStatus = null;
+			if(tempOrder.getOrderStatus() == true)
+				orderStatus = "Paid & Ready for Delivery";
+			else
+				orderStatus = "Pending for Payment";
+			String formatPrice = String.format("%.2f", tempOrder.getOrderTotalPrice());
+			System.out.println(tempOrder.getOrderID() +"\tRM "+ formatPrice +"\t"+ orderStatus);
+		}
+ 		System.out.println("\n<<List of Orders (Detailed)>>");
+ 		for (Order tempOrder: order) {  // loop for (number of orders) in Order
+ 			if(tempOrder.getOrderID() <= 9)
+				System.out.print("Order ID: 0");
+ 			else
+ 				System.out.print("Order ID: ");
+ 			System.out.println(tempOrder.getOrderID() + "\n"); // get OrderID
+ 			System.out.println("Item\tItem\t\t\t\t Item\t Price\t  Quantity\tPrice");
+ 	 		System.out.println(" ID\tName\t\t\t\t Type\t (RM)\t  per Item\t(RM)");
+ 			
+ 			for(int i = 0; i < tempOrder.getOrderItemsID().size(); i++) {	// loop for (number of items) in 1 Order
+ 				
+ 				int itemID = tempOrder.getItemIDAt(i); // get n = first item's ID, where n = 1,2,3...(number of items)
+ 				int iterationForItem = 0; // iteration to determine which item in Item List
+ 				for (Item tempItem: item) {
+ 					++iterationForItem;
+ 					if(itemID == iterationForItem) { // item found 
+ 						// Display itemID, itemName, itemType
+ 	 		 			System.out.printf(" 0%-5d %-32s %-8s", iterationForItem, tempItem.getItemName(), tempItem.getItemType());
+ 	 		 						
+ 	 		 			// Display itemPrice
+ 	 		 			if (tempItem.getPromotionalItem() == 'Y')
+ 	 		 				System.out.printf("%-10.2f", calculatePromotionalPrice(tempItem, loginValid));
+ 	 		 			else
+ 	 		 				if (loginValid.getFlag() == true)
+ 	 		 					System.out.printf("%-10.2f", tempItem.getMemberPrice());
+ 	 		 				else
+ 	 		 					System.out.printf("%-10.2f", tempItem.getNonMemberPrice());
+ 	 		 			
+ 	 		 			// Display itemQuantity
+ 	 		 			System.out.printf("%-13d", tempOrder.getItemQuantityAt(i));	
+ 	 		 			
+ 	 		 			// Display itemSubTotal
+ 	 		 			System.out.printf("%-15.2f \n", calculateItemPrice(tempItem,tempOrder.getItemQuantityAt(i),loginValid)); // delete this
+ 	 		 			break;
+ 					}
+ 				}
+	 		}
+ 				
+ 			System.out.print("\n\t\t\t\t\t\t\t  Sub-Total:\t");
+ 			System.out.printf("%-8.2f", tempOrder.getOrderItemsSubTotal());
+ 			System.out.print("\n\t\t\t\t\t\t\t  (+ Charges) \t");
+ 			System.out.print("\n\t\t\t\t\t\t\t  Delivery: \t");
+ 			System.out.printf("%-8.2f", tempOrder.getOrderDeliveryCharges());
+ 			System.out.print("\n\t\t\t\t\t\t\t  Additional: \t");
+ 			System.out.printf("%-8.2f", tempOrder.getOrderAdditionalCharges());
+ 			System.out.print("\n\t\t\t\t\t\t\t  -------------------------");
+ 			System.out.print("\n\t\t\t\t\t\t\t  Grand Total:\t");
+ 			System.out.printf("%-8.2f", tempOrder.getOrderTotalPrice());
+    	}
+    	
+    	}
     }
     
     /* =======================================
