@@ -43,6 +43,7 @@ package my.utar.edu;
  * 
  * SECTION E (Track Order)
  * Method E : Method Method to initiate Track Order 	> trackOrder(Member loginValid)
+ * Method E1 : Method Method to initiate Track Order 	> displayAllOrders(Member loginValid)
  * 
  * SECTION F (Utility Methods)
  * Method F1 : Method for integer input validation 		> public int intInputValidation(int min, int max) throws IllegalArgumentException 
@@ -995,6 +996,8 @@ public class ConsoleUI {
     	displayAllOrders(loginValid);
     }
     
+    /* Method E1 : Method Method to initiate Track Order
+   	*****************************************/
     public void displayAllOrders(Member loginValid) {
     	List<Order> order = control.getAllOrders();
     	List<Item> item = control.getAllItems();
@@ -1013,6 +1016,7 @@ public class ConsoleUI {
 		System.out.println("Phone Number: " + loginValid.getPhoneNumber());
 		System.out.println("Delivery Address: " + loginValid.getAddressToString() +", "+ convertAddress(loginValid.getState()));
 		
+		// ------------------------------------------- Part 1
 		System.out.println("\n<<List of Orders>>");
 		System.out.println("=================================================");
 		System.out.println(" ID\tGrand Total\tOrder Status");
@@ -1031,6 +1035,7 @@ public class ConsoleUI {
 		}
  		System.out.println("=================================================");
 		
+ 		// ------------------------------------------- Part 2
  		System.out.println("\n<<List of Orders (Detailed)>>");
  		System.out.println("===================================================================================");
  		for (Order tempOrder: order) {  // loop for (number of orders) in Order
