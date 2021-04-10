@@ -10,6 +10,7 @@ import junitparams.Parameters;
 import org.junit.*;
 /*
  * TC022 To check if valid payment choice can be processed accordingly
+ * TC023 To check if invalid payment choice can be processed accordingly
  * Note: Choice is 1 for Online Banking, 2 for Credit Card
  */
 @RunWith(JUnitParamsRunner.class)
@@ -52,5 +53,12 @@ public class MakingPaymentTest {
 		};
 	}
 	
+	//TC023: Test for invalid arguments
+	@Test(expected=IllegalArgumentException.class)
+	@Parameters(method="parametersForTestMakingPaymentError")
+	public void testMakingPaymentError(int choice, double totalPrice) {
+		Payment payment=new Payment();
+		ui.makingPayment(choice, totalPrice, payment);
+		
 	}
 }
