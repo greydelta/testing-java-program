@@ -83,6 +83,55 @@ public class OrderCalculationIntegrationTest {
 	
 	
 	/*
+	 * TC029
+	 * Rule 5&6: Registered Member, different area category, subtotal is 30, so additional charge is not considered
+	 */
+	private Object[] parametersForTestOrderCalculationV2() {
+		return new Object[] {
+				/*Member */
+				new Object[] {true,"MT",32.5}, //Area Category 1: MT is code for Masjid Tanah
+				new Object[] {true,"KS",33.0}, //Area Category 2: KS is code for Kuala Sungai
+				new Object[] {true,"BR",33.5}, //Area Category 3: BR is code for Bukit Beruang
+				new Object[] {true,"JN",34.0}, //Area Category 4: JN is code for Jasin
+				new Object[] {true,"UP",34.5}, //Area Category 5: UP is code for Ujong Pasir
+				new Object[] {false,"BH",35.0},//Area Category 6: BH is code for Bandar Hilir
+				/*Non member*/
+				new Object[] {false,"MT",32.5}, //Area Category 1: MT is code for Masjid Tanah
+				new Object[] {false,"KS",33.0}, //Area Category 2: KS is code for Kuala Sungai
+				new Object[] {false,"BR",33.5}, //Area Category 3: BR is code for Bukit Beruang
+				new Object[] {false,"JN",34.0}, //Area Category 4: JN is code for Jasin
+				new Object[] {false,"UP",34.5}, //Area Category 5: UP is code for Ujong Pasir
+				new Object[] {false,"BH",35.0}//Area Category 6: BH is code for Bandar Hilir
+				
+		};
+	}
+	
+	@Test
+	@Parameters(method="parametersForTestOrderCalculationV2")
+	public void testOrderCalculationV2(boolean isMember,String areaCode,double expResult) {
+		
+		Item anItem=new Item();
+		if(!isMember) {
+			anItem.setNonMemberPrice(15);
+		}
+		else {
+			anItem.setMemberPrice(15);
+		}
+		
+		Member aMember=new Member();
+		aMember.setFlag(isMember);
+		aMember.setArea(areaCode);
+		
+		double itemTotal=ui.calculateItemPrice(anItem,2 , aMember);
+		
+		double delCharge=ui.calculateDeliveryCharge(aMember.getArea());
+		double addCharge=ui.calculateAdditionalCharge(itemTotal);
+		double actualResult=ui.calculateGrandTotal(itemTotal, delCharge, addCharge);
+		
+		
+		assertEquals(expResult,actualResult,0.01);	
+	}
+	
 
 
 }
