@@ -109,6 +109,7 @@ public class OrderCalculationIntegrationTest {
 	@Test
 	@Parameters(method="parametersForTestOrderCalculationV2")
 	public void testOrderCalculationV2(boolean isMember,String areaCode,double expResult) {
+		//setting member price: 15 X 2 (qty), just to get subtotal of 30 (to achieve item total as set in decision table)
 		
 		Item anItem=new Item();
 		if(!isMember) {
